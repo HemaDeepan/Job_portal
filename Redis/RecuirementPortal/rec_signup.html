@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">   
+<link rel ="stylesheet" href="https://hemam-3682.zcodeusers.com/RecuirementPortal/job.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://hemam-368.zcodeusers.com/RecuirementPortal/job.js"></script>
+ <script>
+          function loadDoc() {
+
+             
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText == "OK") {
+               window.location.href='/job_post';
+            }
+            else{
+                alert("false");
+            }
+        }
+
+    }
+    var username = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var phone = document.getElementById("phone").value;
+    var location = document.getElementById("ctry").value;
+    var designation = document.getElementById("des").value;
+    var company=document.getElementById("cmp").value;
+     var address=document.getElementById("adr").value;
+      var industry=document.getElementById("ind").value;
+       var website=document.getElementById("wbst").value;
+    var pswrdCheck = /^.{8,15}$/g;
+    var nameCheck = /^[a-zA-Z]+$/g;
+    var locationCheck = /^[a-zA-Z]+$/g;
+    var emailCheck = /^[a-z][a-z0-9._-]{3,30}@[a-z]{4,10}\.(co|com|co\.in|org|edu)$/gi;
+    var phoneCheck = /^[7-9]{1}[0-9]{9}$/g;
+    emailCheck = emailCheck.test(email);
+    pswrdCheck = pswrdCheck.test(password);
+    nameCheck = nameCheck.test(username);
+    locationCheck = locationCheck.test(location);
+    phoneCheck = phoneCheck.test(phone);
+    if (username !== "" && email !== "" && password !== "" && phone !== "" && location !== "") {
+        if (emailCheck == true && pswrdCheck == true && nameCheck == true && phoneCheck == true && locationCheck == true) {
+               var add = "Email=" + email + "&Phone=" + phone + "&Password=" + password + "&Name=" + username + "&Location=" + location+"&Website="+website+"&Industry="+industry+"&Designation="+designation+"&Company="+company+"&Address="+address+"&Type=Recruiter";
+            xhttp.open("POST", "/recsignup1", true);
+            xhttp.send(add);
+
+        } else {
+            alert("false");
+        }
+    } else {
+        alert("enter the data");
+    }
+
+}
+
+      </script>
+</head>
+<body>
+<div class="container2 "> <!--JOB SEEKERS SIGN UP DIV-->
+ <div class="recruiterHeader"> <p>JOB RECRUITER SIGN IN</p></div>
+ <div class="recruiterDiv">
+     
+     <div class="recruiterLeft">
+     <div  class="hov"><input type="text" placeholder="Email" id="email" />        <hr class="hr1"></div><br>
+     <div  class="hov"><input type="password" placeholder="Pasword" id="password"/>   <hr class="hr1"></div><br>
+     <div  class="hov"><input type="text" placeholder="Company Name" id="cmp"/>  <hr class="hr1"></div><br>
+     <div  class="hov"><input type="text" placeholder="Industry Tpye" id="ind"/> <hr class="hr1"></div><br>
+     <div  class="hov"><input type="text" placeholder="Person Name" id="name"/>   <hr class="hr1"></div><br>
+     </div>
+     
+     <div class="recruiterRight">
+     <div  class="hov"><input type="text" placeholder="Designation" id="des"/>     <hr class="hr1"></div><br>
+     <div  class="hov"><input type="text" placeholder="Office Address" id="adr"/>  <hr class="hr1"></div><br>
+     <div  class="hov"><input type="text" placeholder="Country" id="ctry"/>         <hr class="hr1"></div><br>
+     <div  class="hov"><input type="number" placeholder="Number" id="phone"/>        <hr class="hr1"></div><br>
+     <div  class="hov"><input type="text" placeholder="Company Website" id="wbst"/> <hr class="hr1"></div><br>
+     <button class="recbtn" onclick="loadDoc()">SUBMIT</button>
+     </div>
+     
+    
+ </div>
+</div>
+<script>
+    $(document).ready(function(){
+                      if(location.pathname=="/edit_rec"){
+                  $.post("/editRec",{"user": document.cookie.split("=")[1]},function(data,status){
+                      data=JSON.parse(data);
+               $("#email").prop("disabled",true); 
+                document.getElementById("email").value=data.Email;
+                 document.getElementById("name").value=data.Name;
+    document.getElementById("password").value=data.Password;
+     document.getElementById("phone").value=data.Phone;
+     document.getElementById("ctry").value=data.Location;
+   document.getElementById("des").value=data.Designation;
+    document.getElementById("cmp").value=data.Company;
+   document.getElementById("adr").value=data.Address;
+      document.getElementById("ind").value=data.Industry;
+      document.getElementById("wbst").value=data.Website;
+                  })
+              }
+    })
+</script>
+</body>
+</html>

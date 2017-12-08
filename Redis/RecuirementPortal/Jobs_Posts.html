@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+         <style>
+          body,html {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.whole{
+    height:500px;
+    width:100%;
+}
+header{
+    height:70px;
+    background:black;
+    display:flex;
+}
+header p{
+    font: bold 18px/70px cursive;
+    color: white;
+    margin: 0px;
+    display: inline;
+}
+header img{
+    padding: 8px;
+    width:60px;
+}
+.In_Div{
+    width: 80%;
+    height: 100%;
+    margin: 20px 135px;
+}
+.Post_div{
+    height: 250px;
+    width: 650px;
+    margin: 10px 180px;
+}
+.a{
+    height: 10%;
+    width: 50%;
+}
+.post_btn{
+    display: block;
+    padding: 8px 62px;
+    margin: auto;
+    outline:none;
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+    border: 1px solid #eee;
+    border-radius: 11px;
+}
+input{
+    display: block;
+    color: rgba(0, 0, 0, 0.81);
+    margin: 33px 28px;
+    border: none;
+    padding: 10px 0 0 6px;
+    width: 196px;
+    background: none;
+    border-bottom: 1px solid #eee;
+    outline: none
+}
+#post_job{
+    height: 400px;
+    width: 400px;
+    position: absolute;
+    left: 450px;
+    top: 140px;
+    display: none;
+}
+#pj{
+    display:none;
+}
+
+      </style> 
+      
+     
+    </head>
+    <body onload="posts()">
+         <header>
+       <img src="http://www.ksoftware.co.in/assets/icon/job-portal.png">
+       <p>ZU JOB PORTAL</p>
+       <div class="profile">
+       </div>
+       <div class="pf">
+           <button onclick="signout()">signout</button>
+           <button onclick="edit_acc()">edit</button>
+           <button onclick="delete_acc()">delete</button>
+       </div>
+       <button onclick="show()" id="pj">Post job</button>
+       <button class="ftr">filters</button>
+   </header>
+   <div class="whole">
+       <div class="In_Div">
+           <div class="Post_div">
+              <!-- <div class="Trn_post"></div>-->
+           </div>
+            
+       </div>
+   </div>
+   <div id="post_job">
+        <input type="text" placeholder="Designation" id="desi" name="Designation">
+        <input type="text" placeholder="Experience" id="exp" name="Experience">
+        <input type="text" placeholder="Salary" id="salary" name="Salary">
+        <input type="text" placeholder="Key Skills" id="skil" name="Skill">
+        <input type="text" placeholder="Job Description" id="desc" name="Description">
+        <input type="text" placeholder="WalkIn Date" id="wdate" name="WalkIn">
+        <input type="text" placeholder="Location" id="loc" name="Location">
+        <button class="post_btn" onclick="loadDoc()">Post</button>
+   </div>
+    <script>
+        function posts()
+        {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function()
+           {
+              if (this.readyState == 4 && this.status == 200) {
+                  var value=JSON.parse(this.responseText);
+                       find_type(value);
+//--------------------------------jobseeker--------------------------------------------------------------
+
+              }
+           } 
+            xhttp.open("POST","/post", true);
+           xhttp.send(document.cookie.split("=")[1]);
+        }  
+        function show(){
+          document.getElementById("post_job").style.display="block"; 
+        }
+        function loadDoc(){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange =function(){
+                if (this.readyState == 4 && this.status == 200) {
+                  if(this.responseText=="OK"){
+                     document.getElementById("post_job").style.display="none";  
+                  }
+              } 
+            }
+            var number = Math.floor(Math.random()*10000000);
+            var date =new Date();
+            var experience=document.getElementById("exp").value;
+            var salary=document.getElementById("salary").value;
+            var skill=document.getElementById("skil").value;
+            var designation=document.getElementById("desi").value;
+            var description=document.getElementById("desc").value;
+            var WalkIn=document.getElementById("wdate").value;
+            var location =document.getElementById("loc").value;
+            var value="Experience="+experience+"&Salary="+salary+"&Skill="+skill+"&Designation="+designation+"&Description="+description+"&WalkIn="+WalkIn+"&Location="+location+"&user="+document.cookie.split("=")[1]+"&Date="+date.toLocaleDateString()+"&btn_id="+number;
+            console.log(value);
+            xhttp.open("POST","/postOnWall", true);
+           xhttp.send(value);
+        }
+        
+        function find_type(value){
+          $.post("/cookie",
+           {
+               "user": document.cookie.split("=")[1],
+           },function (data,status){
+               data=JSON.parse(data);
+               if(data.Type=="recruiter"){
+                   document.getElementById("pj").style.display="block";
+                     $(".int").hide();
+                   $(".lke").hide();
+                    test(value, data.email);
+               }
+               else if(data.type=="jobseeker"){
+                   test(value, data.email);
+                     $(".lke").hide();
+               }
+               else if(data.type=="Trainer"){
+                  $(".int,#pj").hide();
+                   test(value, data.email);
+               }
+              
+           });
+             
+        }
+        
+        function test(value, cokie)
+        {
+            var val=Object.values(value[0]);
+            for(i=0;i<val.length;i++){
+                var prse=JSON.parse(val[i]);
+                $(".Post_div").append("<div class='a' id='des"+i+"'></div><div class='a' id='date"+i+"'></div><div class='a' id='Cname"+i+"'></div><div class='' id='lname"+i+"'></div><div class='a' id='kskil"+i+"'></div><div class='a' id='job_des"+i+"'></div><div class='a' id='date_post"+i+"'></div><div class='a' id='email"+i+"'></div><div style='display:none' class='a' id='Id"+i+"'></div><button class='lke' id="+prse.btn_id+">Like</button><button class='int'>INTERESTED</button><button class='trainer'>Trainers</button");
+                $("#des"+i+"").text(prse.Designation);
+                      $("#Cname"+i+"").text(prse.Company);
+                      $("#date"+i+"").text(prse.WalkIn);
+                      $("#ename"+i+"").text(prse.Experience);
+                      $("#lname"+i+"").text(prse.Location);
+                     $("#kskil"+i+"").text(prse.Skill);
+                      $("#job_des"+i+"").text(prse.Description);
+                      $("#email"+i+"").text(prse.Description).hide();
+                      $("#date_post"+i+"").text("Posted On "+prse.Date);
+                      $("#Id"+i).text(prse.user);
+                      
+            }
+            hide_btn();
+            }
+            function hide_btn(){
+                $.post("/list_id",
+                {"user":document.cookie.split("=")[1],},
+                function(data,status){
+                    data=JSON.parse(data);
+                    console.log(typeof(data));
+                    for(i=0;i<data.length;i++){
+                       $("#"+data[i]).hide(); 
+                    }
+                }
+                )
+            }
+            $(document).on("click",".lke",function(){
+                $(this).prop("disabled","true")
+                var id=$(this).prev().prev().html();
+                var btn_id = $(this).attr("id");
+                $.post("/trainer_Post",
+                {
+                    "user":document.cookie.split("=")[1],
+                    "id":id,
+                    "btn_id": btn_id
+                },function(data,status){
+                  console.log(status);  
+                })
+            })
+            $(document).on("click",".trainer",function(){
+                 $(this).after("<div class='Trn_Post'></div>");
+             var id1=$(this).prev().prev().prev().text();
+            $.post("/trns_list",{
+                "id":id1,
+            },function(data,status){
+                data=JSON.parse(data)
+                if(data!=="undefined"){
+                    for(j=0;j<data.length;j++){
+                     data=JSON.parse(data[j])
+                    $(".Trn_Post").append("<div id='center"+j+"'></div><div id='course"+j+"'></div><div id='location"+j+"'></div><div id='fee"+j+"'></div><div id='Phone"+j+"'></div><a id='join"+j+"'>Join</a>");
+                    $("#center"+j+"").text(data.Center);
+                     $("#course"+j+"").text(data.Course);
+                      $("#location"+j+"").text(data.Location);
+                       $("#fee"+j+"").text(data.Fee);
+                         $("#Phone"+j+"").text(data.Phone);
+                         $("#join"+j+"").attr("href",data.Website);
+                    }
+                    }
+            })
+            })
+            function signout(){
+                $.post("/signout",{
+                    "key":document.cookie.split("=")[1],
+                },function(data,staatus){
+                    if(data=="ok"){
+                        document.cookie="user="+document.cookie.split("=")[1]+";expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                        location.href="/signin"
+                    }
+                })
+            }
+             function delete_acc(){
+                $.post("/delete",{
+                    "key":document.cookie.split("=")[1],
+                },function(data,staatus){
+                    if(data=="ok"){
+                        document.cookie="user="+document.cookie.split("=")[1]+";expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                        location.href="/"
+                    }
+                })
+            }
+            function edit_acc(){
+                $.post("\edit",{"key":document.cookie.split("=")[1]},function(data,status){
+                   data=JSON.parse(data);
+                   if(data.type=="jobseeker"){
+                       location.href="/edit_job";
+                   }
+                  else if(data.type=="Trainer"){
+                       location.href="/edit_trn";
+                   }
+                  else if(data.Type=="recruiter"){
+                       location.href="/edit_rec";
+                   }
+                })
+                //location.href="\edit1";
+            }
+            $(document).on("click",".int",function(){
+                var iid=$(this).prev().prev().prev().text();
+                console.log(iid);
+                $.post("/mail_api",
+                {"key":document.cookie.split("=")[1],
+                    "who":iid,
+                },function(data,status){
+                    console.log(data);
+                })
+            }) 
+      </script>
+    </body>
+</html>

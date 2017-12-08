@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">   
+<link rel ="stylesheet" href="https://hemam-3682.zcodeusers.com/RecuirementPortal/job.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://hemam-3682.zcodeusers.com/RecuirementPortal/job.js"></script>
+ <script>
+          function loadDoc() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText == "OK") {
+           window.location.href="/job_post";
+                        }
+        }
+
+    }
+    var username = document.getElementById("tname").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var phone = document.getElementById("phone").value;
+    var location = document.getElementById("loc").value;
+    var training = document.getElementById("trn").value;
+      var center=document.getElementById("center").value;
+       var website=document.getElementById("wbst").value;
+       var fee=document.getElementById("fee").value;
+       var courses=document.getElementById("crs").value;
+    var pswrdCheck = /^.{8,15}$/g;
+    var nameCheck = /^[a-zA-Z]+$/g;
+    var locationCheck = /^[a-zA-Z]+$/g;
+    var emailCheck = /^[a-z][a-z0-9._-]{3,30}@[a-z]{4,10}\.(co|com|co\.in|org|edu)$/gi;
+    var phoneCheck = /^[7-9]{1}[0-9]{9}$/g;
+    emailCheck = emailCheck.test(email);
+    pswrdCheck = pswrdCheck.test(password);
+    nameCheck = nameCheck.test(username);
+    locationCheck = locationCheck.test(location);
+    phoneCheck = phoneCheck.test(phone);
+    if (username !== "" && email !== "" && password !== "" && phone !== "" && location !== "") {
+        if (emailCheck == true && pswrdCheck == true && nameCheck == true && phoneCheck == true && locationCheck == true) {
+               var add = "Email=" + email + "&Phone=" + phone + "&Password=" + password + "&Trainer=" + username + "&Location=" + location+"&Website="+website+"&Center="+center+"&Training="+training+"&Fee="+fee+"&Courses="+courses+"&Type=Trainer";
+            xhttp.open("POST", "/trnsignup1", true);
+            xhttp.send(add);
+
+        } else {
+            alert("false");
+        }
+    } else {
+        alert("enter the data");
+    }
+
+}
+
+      </script>
+</head>
+<body>
+<div class="container3 "> <!--JOB SEEKERS SIGN UP DIV-->
+  
+<div class="trainerDiv">
+     <div class="trainerHeader">TRAINER SIGN UP</div>
+     
+     <div>    
+     <input type="text" placeholder="Email" id="email"/><br>
+     <input type="password" placeholder="Password" id="password"/><br>
+     <input type="text" placeholder="Centre Name" id="center"/><br>
+     <input type="number" placeholder="Number" id="phone"/><br>
+     <input type="text" placeholder="Location" id="loc"/><br>
+     <input type="text" placeholder="Trainer Name" id="tname"/><br>
+     <input type="text" placeholder="Course" id="crs"/><br>
+     <input type="text" placeholder="Website" id="wbst"/><br>
+     <input type="text" placeholder="Fees" id="fee"/><br>
+     <input type="text" placeholder="Training Period" id="trn"/><br>
+     </div>
+     <button onclick="loadDoc()">SUBMIT</button>
+</div>
+
+</div>
+<script>
+    $(document).ready(function(){
+         if(location.pathname=="/edit_trn"){
+                  $.post("/editRec",{"user": document.cookie.split("=")[1]},function(data,status){
+                data=JSON.parse(data);
+               $("#email").prop("disabled",true);
+                 document.getElementById("email").value=data.Email;
+                document.getElementById("tname").value=data.Name;
+                document.getElementById("password").value=data.Password;
+                document.getElementById("phone").value=data.Phone;
+                document.getElementById("loc").value=data.Location;
+                document.getElementById("trn").value=data.Training;
+                document.getElementById("center").value=data.Center;
+                document.getElementById("wbst").value=data.Website;
+                document.getElementById("fee").value=data.Fee;
+                document.getElementById("crs").value=data.Courses;
+                  })
+              }
+    })
+</script>
+</body>
+</html>

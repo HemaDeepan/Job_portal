@@ -1,0 +1,619 @@
+          * {
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+             font-family: lato;
+         }
+         html,
+         body {
+             height: 100%;
+             width: 100%;
+             position: relative;
+         }
+         .active {
+             color: red !important;
+             border-bottom: 2px solid red !important;
+         }
+         .clear {
+             clear: both;
+         }
+         /* HEIGHT 100% WIDTH 100%*/
+         
+         .jobseeker,
+         .signupDiv,
+         .container3,
+         .container4,
+         .jobsearch {
+             height: 100%;
+             width: 100%;
+         }
+         /* WIDTH ONLY 100%*/
+         
+         .signupPage,
+         .rightImg,
+         .header1,
+         .recruiterHeader,
+         .searchHeader,
+         .profileinfo button,
+         .hov:hover hr {
+             width: 100%;
+         }
+         /* CURSOR POINTER*/
+         
+         .signIn ul li,
+         .radi,
+         .serachProfile,
+         .searchMain div,
+         .searchRight button,
+         select,
+         .popupDiv button,
+         .fa-heart-o {
+             cursor: pointer;
+         }
+         /*   OUTLINE NONE*/
+         
+         .inputs,
+         .file,
+         .signinBtn,
+         .seekerbtn,
+         .inputs1,
+         .signupDiv div:first-child button,
+         .signupDiv div:nth-child(3) button,
+         .container2 button,
+         .recruiterDiv input,
+         #sub,
+         .trainerDiv input {
+             outline: none;
+         }
+         /* COLOR #666*/
+         
+         .inputs,
+         .recruiterDiv input,.signupRight,.signupDiv,
+         .container4,.postDiv button:hover,
+         label ,.header1 p,.recruiterHeader p.recbtn{
+             color: #333a45;
+         }
+         /* COLOR WHITE*/
+         
+         .postDiv button,
+         .profileinfo button:hover,
+         .searchHeader {
+             color: white;
+         }
+         /*  BACKGROUND WHITE*/
+         
+         .signupRight,
+         .jobseeker,
+         .seekerbtn:hover,
+         .signupDiv,
+         .signupDiv div:nth-child(3) button:hover,
+         .trainerDiv button:hover,.postDiv button:hover {
+             background: white;
+         }
+         .signupPage {
+             background: #f4f4f4;
+             padding: 50px 100px;
+             height: 655px;
+             display: flex;
+         }
+         .signupLeft,
+         .rightImg {
+             height: 100%;
+             width: 50%;
+             background: url("./projct.jpg");
+             background-size: cover;
+             background-size: 100% 100%;
+         }
+         .rightImg {
+             width: 100%;
+         }
+         .signupRight {
+             height: 100%;
+             width: 50%;
+         }
+         .signupRight h2,
+         .signupDiv div:nth-child(2) h2 {
+             text-transform: uppercase;
+             letter-spacing: 0.25em;
+             color: #333a45;
+             text-align: center;
+         }
+         .signupRight p,
+         .signupDiv div:nth-child(2) p {
+             margin: 29px 57px 61px 57px;
+             width: 448px;
+             text-align: center;
+             letter-spacing: 0.19em;
+             text-transform: uppercase;
+         }
+         .signIn {
+             width: 23%;
+             margin: 0 auto;
+         }
+         .signIn ul li {
+             font-weight: bold;
+             text-align: center;
+             text-decoration: none;
+             list-style-type: none;
+             width: 104px;
+             padding: 10px;
+             margin: 10px;
+             border: 1px solid #666;
+             border-radius: 8px;
+         }
+         .signIn ul li:hover{
+             background:#333a45;
+             color:white;
+         }
+         /*CONTAINER1 JOB SEEKER PAGE */
+         
+         .container1 {
+             height: 655px;
+             width: 35%;
+             margin: 0 auto;
+             background-color: lightcoral;
+             box-shadow: 0px 0px 3px #888888;
+         }
+         .jobseeker {
+             overflow: auto;
+             border-radius: 3px;
+         }
+         .seekerInput {
+             padding: 10px 73px;
+         }
+         .header1 {
+             padding: 19px;
+             text-align: center;
+         }
+         .header1 p {
+             text-transform: uppercase;
+             font-size: 16px;
+             margin: 0;
+             font-weight: bold;
+             letter-spacing: 2px;
+         }
+         .inputs {
+             margin: 10px;
+             font-family: lato;
+             letter-spacing: 3px;
+             width: 300px;
+             height: 20px;
+             padding: 16px 20px;
+             margin-left: 10px;
+             border: 3px #333a45;
+             border-radius: 50px;
+             border-style: hidden solid;
+             transition: width 600ms;
+             font-weight: 200;
+             line-height: 20px;
+             border-bottom: 1px solid transparent;
+         }
+         input[type=number]::-webkit-inner-spin-button {
+             -webkit-appearance: none;
+             margin: 0;
+         }
+         .file {
+             cursor: pointer;
+             border: none;
+             margin: 10px 0px 0px 10px;
+         }
+         label {
+             margin-right: 10px;
+         }
+         .signIn ul li {
+             position: relative;
+         }
+         .signinBtn {
+             float: right;
+             background: none;
+             border: none;
+             letter-spacing: 2px;
+         }
+         .signinHeader {
+             padding: 9px 11px;
+             height: 41px;
+         }
+         .signinHeader+div,
+         .signupDiv div:nth-child(2) {
+             padding: 63px 10px 0px 10px;
+         }
+         .lab1 {
+             padding-left: 10px;
+         }
+         .experienceDiv {
+             margin: 10px 0px;
+         }
+         ::-webkit-scrollbar {
+             display: none;
+         }
+         .seekerbtn {
+             outline: none;
+             border: 1px solid #333a45;
+             border-radius: 15px;
+             margin: 25px 0px 25px 10px;
+             height: 35px;
+             letter-spacing: 2px;
+             width: 300px;
+             color: #333a45;
+             background: #333a45;
+             font-weight: bold;
+             color: white;
+         }
+         .seekerbtn:hover {
+             border: 1px solid #333a45;
+             color: #333a45;
+         }
+         /* SIGN UP PAGE DIV START */
+         
+         .inputs1 {
+             margin: 10px;
+             font-family: lato;
+             letter-spacing: 5px;
+             width: 300px;
+             height: 20px;
+             padding: 15px 20px;
+             margin-left: 10px;
+             border: 3px #333a45;
+             border-radius: 50px;
+             border-style: hidden solid;
+             transition: width 600ms;
+             color: darkgray;
+             font-weight: 200;
+             line-height: 20px;
+         }
+         .signupDiv div:first-child {
+             padding: 9px 11px;
+             height: 41px;
+         }
+         .signupDiv div:first-child button {
+             float: right;
+             float: right;
+             background: none;
+             border: none;
+             letter-spacing: 2px;
+         }
+         .signupDiv div:nth-child(3) {
+             width: 323px;
+             margin: 0 auto;
+         }
+         .signupDiv div:nth-child(3) button {
+             color: white;
+             background:#333a45;
+             border: 1px solid #333a45;
+             border-radius: 15px;
+             margin: 10px 0px 0px 100px;
+             height: 30px;
+             letter-spacing: 2px;
+             width: 120px;
+         }
+         .signupDiv div:nth-child(3) button:hover {
+             color: #333a45;
+         }
+         /* RECRUITER DIV*/
+         
+         .container2 {
+             padding: 0px 0px 115px 0px;
+         }
+         .recruiterHeader {
+             padding: 39px;
+             text-align: center;
+         }
+         .recruiterHeader p {
+             font-size: 20px;
+         }
+         .recruiterDiv {
+             width: 70%;
+             margin: 0 auto;
+             box-shadow: 0px 0px 5px #888;
+             display: flex;
+         }
+         .recruiterLeft,
+         .recruiterRight {
+             height: 100%;
+             width: 50%;
+             padding: 30px 67px;
+         }
+         .recruiterRight {
+             position: relative;
+         }
+         .recruiterDiv input {
+             border: 1px solid transparent;
+             width: 332px;
+             height: 20px;
+             padding: 20px 0px;
+             letter-spacing: 3px;
+             border-bottom: 1px solid lightgray;
+         }
+         /* TRAINER DIV START*/
+         
+         .trainerDiv {
+             height: 100%;
+             width: 35%;
+             margin: auto;
+             box-shadow: 0px 0px 4px #888;
+         }
+         .trainerDiv input {
+             margin: 10px;
+             font-family: lato;
+             letter-spacing: 3px;
+             width: 300px;
+             height: 20px;
+             padding: 16px 20px;
+             margin-left: 10px;
+             border: 3px #333a45;
+             border-radius: 50px;
+             border-style: hidden solid;
+             transition: width 600ms;
+             color: #666;
+             font-weight: 200;
+             line-height: 20px;
+             border-bottom: 1px solid transparent;
+         }
+         .trainerDiv input:focus,
+         .inputs:focus {
+             border-bottom: 1px solid #333a45;
+         }
+         .trainerHeader {
+             text-align: center;
+             font-weight: bold;
+             padding: 14px;
+             letter-spacing: 2px;
+             font-weight: bold;
+             font-size: 16px;
+         }
+         .trainerHeader + div {
+             padding: 10px 73px;
+         }
+         .trainerDiv button {
+             outline: none;
+             border: 1px solid #333a45;
+             border-radius: 15px;
+             margin: 10px 0px 0px 87px;
+             height: 30px;
+             letter-spacing: 2px;
+             width: 300px;
+             color: #333a45;
+             background: #333a45;
+             font-weight: bold;
+             color: white;
+         }
+         .trainerDiv button:hover {
+             color: #333a45;
+         }
+         .recbtn {
+             border-radius: 43px;
+             border: none;
+             color: white;
+             background: #333a45;
+             margin-top: 1px;
+             font-weight: bold;
+             letter-spacing: 2px;
+             position: absolute;
+             float: right;
+             top: 8px;
+             height: 76px;
+             width: 77px;
+             left: 425px;
+         }
+         .recbtn:hover{
+             background:white;
+             color:#333a45;
+             border:1px solid #333a45;
+         }
+         .labelone {
+             margin: 10px;
+             font-family: lato;
+             letter-spacing: 3px;
+             width: 300px;
+             height: 35px;
+             padding: 5px 20px;
+             margin-left: 10px;
+             border: 3px #333a45;
+             border-radius: 50px;
+             border-style: hidden solid;
+             transition: width 600ms;
+             font-weight: 200;
+             line-height: 20px;
+             border-bottom: 1px solid transparent;
+             color: rgba(51, 58, 69, 0.72);
+             overflow: hidden;
+             cursor: pointer;
+         }
+         /*SEARCH PAGE */
+         
+         .jobsearch {
+             margin: auto;
+         }
+         .searchHeader {
+             margin-bottom: 17px;
+             background: #333a45;
+             height: 50px;
+             border-bottom: 1px solid gray;
+         }
+         .searchLeft {
+             float: left;
+         }
+         .searchLeft p {
+             font-size: 16px;
+             font-weight: bold;
+         }
+         .searchRight {
+             display: flex;
+             float: right;
+         }
+         .searchRight button,
+         select {
+             height: 50px;
+             margin: 0px 10px;
+             border: none;
+             background: none;
+             outline: none;
+         }
+         select {
+             width: 100px;
+         }
+         .serachProfile {
+             height: 50px;
+             width: 50px;
+             background: url("./projct.jpg");
+             background-size: cover;
+             background-size: 100% 100%;
+         }
+         .profileinfo {
+             left: 1193px;
+    top: 65px;
+    position: absolute;
+    height: 114px;
+    width: 135px;
+    box-shadow: 0px 0px 4px #888;
+         }
+         .profileinfo button {
+             background: none;
+             height: 38px;
+             outline: none;
+             border: none;
+         }
+         .profileinfo button:hover {
+             background: lightgray;
+         }
+         .heading {
+             margin: 13px 13px;
+         }
+         .postDiv {
+             background-color: white;
+             padding: 25px 51px;
+             top: 100px;
+             left: 447px;
+             position: absolute;
+             height: 500px;
+             width: 400px;
+             box-shadow: 0px 0px 4px #888;
+         }
+         .postDiv input {
+             margin: 10px;
+             font-family: lato;
+             letter-spacing: 3px;
+             width: 300px;
+             height: 20px;
+             padding: 16px 20px;
+             margin-left: 10px;
+             border: 3px #333a45;
+             border-radius: 50px;
+             border-style: hidden solid;
+             transition: width 600ms;
+             color: darkgray;
+             font-weight: 200;
+             line-height: 20px;
+             border-bottom: 1px solid transparent;
+             outline: none;
+         }
+         .postDiv input:focus {
+             border-bottom: 1px solid #333a45;
+         }
+         .postDiv button {
+             outline: none;
+             letter-spacing: 2px;
+             border-radius: 50px;
+             width: 300px;
+             height: 40px;
+             margin: 22px 10px;
+             border: 3px #333a45;
+             border-style: hidden solid;
+             background: #333a45;
+             font-weight: bold;
+         }
+         .postDiv button:hover{
+             border-bottom:1px solid #333a45;
+              border-top:1px solid #333a45;
+         }
+         option {
+             color: #333;
+         }
+         .popupDiv {
+             padding: 20px 20px;
+             width: 50%;
+             margin: 0 auto;
+             box-shadow: 0px 0px 4px #888;
+         }
+         .popupbtn {
+             border: 1px solid transparent;
+             border-bottom: 1px solid #333a45;
+             font-weight: bold;
+             background: #333a45;
+             border: 1px solid #333a45;
+             height: 30px;
+             width: 100px;
+             color: white;
+             letter-spacing: 2px;
+             outline: none;
+         }
+         .profileinfo button:hover {
+             background: #333a45;
+         }
+         .fa-heart-o {
+             padding-right: 5px;
+         }
+         .trainee {
+             padding: 10px 0px;
+         }
+         .trainee div {
+             height: 30px;
+         }
+         .trainee div button {
+             background: #333a45;
+             border: 1px solid #333a45;
+             height: 39px;
+             float: right;
+             width: 120px;
+             color: white;
+             letter-spacing: 2px;
+             outline: none
+         }
+         .trainee div button:hover,
+         .popupbtn:hover {
+             border-right: 1px solid transparent;
+             border-left: 1px solid transparent;
+             border-top: 1px solid #333a45;
+             border-bottom: 1px solid #333a45;
+             color: #333a45;
+             background: white;
+         }
+         .fa-upload {
+             float: right;
+             margin-top: 4px;
+         }
+         hr {
+             width: 0;
+             height: 1px;
+             margin: auto;
+             margin-top: -1px;
+             transition: 1s;
+             background-color: #333a45;
+             visibility: hidden;
+         }
+         .hov:hover hr {
+             visibility: visible;
+         }
+         
+    .profileinfo::before {
+        content: "";
+    position: absolute;
+    border: 13px solid transparent;
+    border-bottom: 15px solid #333a45;
+    top: -29px;
+    left: 98px;  
+    }
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         

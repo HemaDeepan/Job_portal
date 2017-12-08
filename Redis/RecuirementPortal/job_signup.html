@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">   
+ <link rel ="stylesheet" href="https://hemam-3682.zcodeusers.com/RecuirementPortal/job.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://hemam-3682.zcodeusers.com/RecuirementPortal/job.js"></script>
+<script>
+function loadDoc() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText == "OK") {
+                form();
+            } else {
+                alert(this.responseText);
+            }
+        }
+
+    }
+    var username = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var phone = document.getElementById("phone").value;
+    var location = document.getElementById("city").value;
+    var profile = document.getElementById("profile").value;
+    var file=document.getElementById("file").value;
+    var skill=document.getElementById("skil").value;
+    var company=document.getElementById("cmp").value;
+    var designation=document.getElementById("des").value;
+    var year=document.getElementById("exp").value;
+    var pswrdCheck = /^.{8,15}$/g;
+    var nameCheck = /^[a-zA-Z]+$/g;
+    var locationCheck = /^[a-zA-Z]+$/g;
+    var emailCheck = /^[a-z][a-z0-9._-]{3,30}@[a-z]{4,10}\.(co|com|co\.in|org|edu)$/gi;
+    var phoneCheck = /^[7-9]{1}[0-9]{9}$/g;
+    var companyCheck=/^[a-zA-Z]+$/g;
+    var designationCheck=/^[a-zA-Z]+$/g;
+    var yearCheck=/^[a-z]+[a-z0-9]+?[\.]?$/g;
+    emailCheck = emailCheck.test(email);
+    pswrdCheck = pswrdCheck.test(password);
+    nameCheck = nameCheck.test(username);
+    locationCheck = locationCheck.test(location);
+    phoneCheck = phoneCheck.test(phone);
+    companyCheck=companyCheck.test(company);
+    designationCheck=designationCheck.test(designation);
+    yearCheck=yearCheck.test(year);
+    if(document.getElementById('fresher').checked) {
+       var experience=document.getElementById('fresher').value;
+}
+else if(document.getElementById('experienced').checked) {
+  var experience= document.getElementById('experienced').value;
+}
+    if (username !== "" && email !== "" && password !== "" && phone !== "" && location !== "") {
+        if (emailCheck == true && pswrdCheck == true && nameCheck == true && phoneCheck == true && locationCheck == true && companyCheck == true && designationCheck== true && yearCheck==true ) {
+            if(company == "" && designation == "" && year == ""){
+            var add = "Email=" + email + "&Phone=" + phone + "&Password=" + password + "&Name=" + username + "&Location=" + location+"&Skill="+skill+"&Experience="+experience+"&Designation=Not Mentioned &Year=Not Mentioned&Company=Not Mentioned &Type=Job_seeker";
+            }else{
+               var add = "Email=" + email + "&Phone=" + phone + "&Password=" + password + "&Name=" + username + "&Location=" + location+"&Skill="+skill+"&Experience="+experience+"&Designation="+designation+"&Company="+company+"&Year="+year+"&Type=Job_seeker";
+            }
+            xhttp.open("POST", "/signup1", true);
+            xhttp.send(add);
+
+        } else {
+            alert("fill your data correctly");
+        }
+    } else {
+        alert("enter the data");
+    }
+
+}
+
+function form() {
+    document.getElementById("form").submit();
+     //location.href="/job_post";
+}
+
+function openDiv() {
+    $(".exper").show('1000')
+}
+function closeDiv() {
+    $(".exper").hide('1000')
+}
+</script>
+</head>
+<body>
+<div class="container1 "> <!--JOB SEEKERS SIGN UP DIV-->
+<div class="jobseeker">
+        <div class="header1">
+            <p>Job Seekers Sing Up</p>
+        </div>
+        <div class="seekerInput">
+           <input type="text" placeholder="Name" class="inputs" id="name"/><br>
+           <input type="mail" placeholder="Email" class="inputs" id="email"/><br>
+           <input type="password" placeholder="Password" class="inputs"  id="password"/><br>
+           <input type="number" placeholder="Number" class="inputs" id="phone"/><br>
+           <input type="text" placeholder="Location" class="inputs" id="city"/><br>
+           <input type="text" placeholder="Skills" class="inputs" id="skil"/><br>
+           <form  action='/fileupload' method='post' enctype='multipart/form-data'  id='form'>
+            <label class="labelone"> Set a Profile Photo<i class="fa fa-upload" aria-hidden="true"></i><input type="file" placeholder="Profile" class="file" style="outline:none;visibility:hidden" id="profile"  name='Profile' /></label><br>
+             <label class="labelone">Resume<i class="fa fa-upload" aria-hidden="true"></i><input type="file" placeholder="Profile" class="file" style="outline:none;visibility:hidden" id="file" name="Resume"/></label><br>
+         </form>
+           <form action="">
+           <label class="lab1">Experience</label>
+           <input type="radio"  class="radio1 radi" name="experienced" id='fresher' onclick="closeDiv()" />  <label>Fresher</label>
+           <input type="radio" class="radio2 radi"  name="experienced" onclick="openDiv()" id='experienced' />  <label>Experience</label>
+           </form>
+           <div class="experienceDiv">
+           <input type="text" placeholder="Company Name" class="inputs" id="cmp"/><br>
+           <input type="text" placeholder="Designation" class="inputs" id="des"/><br>
+           <input type="text" placeholder="Experience" class="inputs" id="exp"/><br>
+           </div>
+           <button class="seekerbtn" onclick="loadDoc()">Submit</button>
+        </div>
+</div>
+</div>
+<script>
+$(document).ready(function(){
+
+     if(location.pathname=="/edit_job"){
+        $.post("/editRec",{"user": document.cookie.split("=")[1]},function(data,status){
+        data=JSON.parse(data);
+        $("#email").prop("disabled",true);
+        document.getElementById("email").value=data.Email;
+        document.getElementById("name").value=data.Name;
+        document.getElementById("password").value=data.Password;
+        document.getElementById("phone").value=data.Phone;
+        document.getElementById("city").value=data.Location;
+        document.getElementById("des").value=data.Designation;
+        document.getElementById("cmp").value=data.Company;
+        document.getElementById("skil").value=data.Skill;
+        document.getElementById("exp").value=data.Year;
+                  })
+              }
+    
+});
+</script>
+</body>
+</html>
+
+
+
+
